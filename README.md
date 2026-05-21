@@ -174,10 +174,6 @@ Pentru a adăuga un **tărâm nou**:
 
 ---
 
-## 📄 Licență
-
-Distribuit sub licența MIT. Vezi [LICENSE](LICENSE) pentru detalii.
-
 ---
 
 <div align="center">
