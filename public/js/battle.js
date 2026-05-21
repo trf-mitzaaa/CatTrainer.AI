@@ -1,16 +1,10 @@
 // js/battle.js
-// ─────────────────────────────────────────────────────────────────────────────
-//  CatTrainer RPG — Battle & AI generation (Gemini)
-//
-//  Reads the player profile from onboarding.js on every call so lessons
-//  and questions automatically adapt to difficulty, grade, and language.
-// ─────────────────────────────────────────────────────────────────────────────
 
 import { t } from './i18n.js';
 import { getPlayerProfile } from './onboarding.js';
 import { POWERUPS } from './powerups.js';
 
-const GEMINI_API_KEY = 'AIzaSyAYJ5lT_PFwr9ypUXV0nCxkroZHELCbwp4'; // ← Replace with your key
+const GEMINI_API_KEY = 'AIzaSyAYJ5lT_PFwr9ypUXV0nCxkroZHELCbwp4';
 const GEMINI_URL     = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${GEMINI_API_KEY}`;
 
 // ── Language label map ────────────────────────────────────────────────────────
