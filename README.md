@@ -1,4 +1,5 @@
-🐱 CatTrainer.AI
+🐱 CatTrainer.AI 
+Link catre platforma LIVE: https://learn-mate-ai-db017.web.app/
 
 > **Platformă educațională gamificată cu Inteligență Artificială**  
 > Învață. Explorează. Cucerește.
