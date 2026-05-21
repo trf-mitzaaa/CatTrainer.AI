@@ -31,7 +31,7 @@ Fiecare lecție și fiecare întrebare sunt generate **dinamic** de Google Gemin
 | ⚔️ **Sistem de Bătălie** | HP, daune, streak bonus, animații, Boss final |
 | 🗺️ **7 Tărâmuri** | Biologie, Matematică, Istorie, Chimie, Fizică, Literatură, Informatică |
 | 🎮 **Gamificare completă** | XP, nivele eroice, aur, magazin, realizări deblocabile |
-| 🧪 **6 Power-Up-uri** | Poțiuni, scuturi, indicii, pergamente XP |
+| 🧪 **14 Power-Up-uri** | Poțiuni, scuturi, indicii, pergamente XP |
 | 🌍 **5 Limbi** | Română, Engleză, Franceză, Germană, Spaniolă |
 | 📱 **Responsive** | Funcționează pe desktop, tabletă și mobil |
 | 🔐 **Autentificare** | Google, Email/Parolă, Telefon (OTP) |
