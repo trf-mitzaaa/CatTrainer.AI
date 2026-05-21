@@ -1,0 +1,81 @@
+<!-- ===== ACCOUNT PAGE =====
+     Replace the existing <div id="accountPage"> block in index.html with this.
+-->
+<div id="accountPage" class="page" style="display:none;">
+    <div class="account-scroll">
+
+        <!-- Header -->
+        <div class="account-header">
+            <div class="account-avatar" id="accAvatar">🐱</div>
+            <div class="account-title">
+                <h2 id="accName">Numele Eroului</h2>
+                <div class="acc-class" id="accClass">Învățăcel novice</div>
+                <div class="acc-badge" id="accBadge">🏅 Începător</div>
+            </div>
+        </div>
+
+        <!-- Account sub-tabs -->
+        <div class="account-tabs">
+            <button class="account-tab-btn active" data-acc-tab="stats">📊 Statistici</button>
+            <button class="account-tab-btn" data-acc-tab="achievements">🏆 Realizări</button>
+            <button class="account-tab-btn" data-acc-tab="settings">⚙️ Setări</button>
+        </div>
+
+        <!-- STATS TAB -->
+        <div id="accTabStats" class="acc-tab-content">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">⚔️</div>
+                    <div class="stat-label">Nivel</div>
+                    <div class="stat-value" id="accLevel">1</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✨</div>
+                    <div class="stat-label">XP Total</div>
+                    <div class="stat-value" id="accXP">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💰</div>
+                    <div class="stat-label">Aur</div>
+                    <div class="stat-value" id="accGold">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div class="stat-label">Lupte</div>
+                    <div class="stat-value" id="accBattles">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-label">Lecții</div>
+                    <div class="stat-value" id="accLessons">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-label">Șir de victorii</div>
+                    <div class="stat-value" id="accStreak">0</div>
+                </div>
+            </div>
+
+            <div class="progress-section">
+                <h3>📊 Progresul tău</h3>
+                <div id="realmProgress"></div>
+            </div>
+        </div>
+
+        <!-- ACHIEVEMENTS TAB -->
+        <div id="accTabAchievements" class="acc-tab-content" style="display:none;">
+            <div class="achievements-section">
+                <h3>🏆 Realizări</h3>
+                <div class="achievements-grid" id="achievementsGrid"></div>
+            </div>
+        </div>
+
+        <!-- SETTINGS TAB -->
+        <div id="accTabSettings" class="acc-tab-content" style="display:none;">
+            <div id="settingsContent">
+                <!-- Rendered dynamically by settings.js -->
+            </div>
+        </div>
+
+    </div>
+</div>

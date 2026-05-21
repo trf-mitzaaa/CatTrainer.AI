@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CatTrainer.AI</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/settings.css" />
+  <link rel="stylesheet" href="css/onboarding.css" />
+  <link rel="stylesheet" href="css/levelmap.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="icon" type="image/png" href="assets/Student.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Handjet:wght,ELSH@100..900,2&family=Pixelify+Sans:wght@400..700&family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="paw-bg" id="pawBg"></div>
+<div class="particles" id="particles"></div>
+
+<!-- ===== AUTH SCREEN ===== -->
+<div id="authScreen" class="screen active">
+  <div class="auth-container">
+
+    <div class="auth-logo">
+      <div class="cat-logo">
+        <span class="cat-face">🐱</span>
+        <div class="logo-glow"></div>
+      </div>
+      <h1 class="game-title">CatTrainer.AI</h1>
+      <p class="game-subtitle" data-i18n="auth.subtitle">⚔️ Tărâmul învățării ⚔️</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button class="tab-btn active" data-tab="login"    data-i18n="auth.tab.login">Intră în tărâm</button>
+      <button class="tab-btn"        data-tab="register" data-i18n="auth.tab.register">Alătură-te celorlalți</button>
+    </div>
+
+    <div id="loginTab" class="auth-form-container">
+      <div class="scroll-container">
+        <div class="scroll-header" data-i18n="auth.login.header">📜 Login</div>
+        <div class="auth-methods">
+          <button class="auth-btn google-btn" id="googleLoginBtn">
+            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="G" width="20"/>
+            <span data-i18n="auth.google">Continuă cu Google</span>
+          </button>
+          <div class="divider"><span>or</span></div>
+          <input type="email"    id="loginEmail"    class="rpg-input" placeholder="Adresa ta (email)" />
+          <input type="password" id="loginPassword" class="rpg-input" placeholder="Parola secretă" />
+          <div id="otpSection" style="display:none;">
+            <input type="text" id="otpInput" class="rpg-input" placeholder="Codul secret de verificare" />
+            <button class="rpg-btn" id="verifyOtpBtn">Codul secret ✨</button>
+          </div>
+          <button class="rpg-btn primary" id="emailLoginBtn" data-i18n="auth.login.btn">⚔️ Intră cu parolă</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="registerTab" class="auth-form-container" style="display:none;">
+      <div class="scroll-container">
+        <div class="scroll-header" data-i18n="auth.register.header">📜 Crează-ți Aventurierul</div>
+        <input type="text"     id="regName"     class="rpg-input" placeholder="Nume" />
+        <input type="email"    id="regEmail"    class="rpg-input" placeholder="Adresa ta (email)" />
+        <input type="password" id="regPassword" class="rpg-input" placeholder="Parola secretă" />
+        <button class="rpg-btn primary" id="emailRegisterBtn" data-i18n="auth.register.btn">🌟 Începe-ți Aventura</button>
+      </div>
+    </div>
+
+    <div class="auth-cat-decor">
+      <span class="deco-cat left">🐈</span>
+      <span class="deco-cat right">🐈‍⬛</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== MAIN APP ===== -->
+<div id="appScreen" class="screen" style="display:none;">
+
+  <header class="hud-bar">
+    <div class="hud-left">
+      <div class="hud-avatar" id="hudAvatar">🐱</div>
+      <div class="hud-info">
+        <span class="hud-name" id="hudName">Erou</span>
+        <div class="hud-level">Lv.<span id="hudLevel">1</span></div>
+      </div>
+    </div>
+    <div class="hud-center">
+      <div class="hud-bar-title" data-i18n="hud.title">⚔️ CatTrainer.AI ⚔️</div>
+    </div>
+    <div class="hud-right">
+      <div class="hud-stat"><span class="hud-icon">💰</span><span id="hudGold">0</span></div>
+      <div class="hud-stat"><span class="hud-icon">✨</span><span id="hudXP">0</span> XP</div>
+      <button class="icon-btn" id="accountBtn">👤</button>
+      <button class="icon-btn" id="logoutBtn">🚪</button>
+    </div>
+  </header>
+
+  <div class="status-bars">
+    <div class="stat-bar-row">
+      <span class="stat-label">XP</span>
+      <div class="stat-bar xp-bar">
+        <div class="stat-fill xp-fill" id="xpFill" style="width:0%"></div>
+      </div>
+      <span class="stat-val"><span id="xpVal">0</span>/<span id="xpNeedVal">100</span></span>
+    </div>
+  </div>
+
+  <nav class="rpg-nav">
+    <button class="nav-btn active" data-page="worldmap" data-i18n="nav.worldmap">🗺️ Mapa Lumii</button>
+    <button class="nav-btn"        data-page="account"  data-i18n="nav.account">👤 Cont</button>
+    <button class="nav-btn"        data-page="shop"     data-i18n="nav.shop">🛒 Magazin</button>
+  </nav>
+
+  <!-- ===== WORLD MAP ===== -->
+  <div id="worldmapPage" class="page active" style="text-align:center;">
+    <div class="page-header">
+      <h2 data-i18n="worldmap.title">🗺️ Alege-ți Materia</h2>
+      <p class="page-sub" data-i18n="worldmap.sub">Alege-ți Tărâmul pentru a-ți începe aventura!</p>
+    </div>
+    <div class="subject-realms" id="subjectRealms" style="margin:0 auto; justify-content:center;"></div>
+  </div>
+
+  <!-- ===== LEVEL MAP ===== -->
+  <div id="levelmapPage" class="page" style="display:none;">
+    <div class="page-header">
+      <button class="back-btn" id="backToRealms" data-i18n="levelmap.back">← Înapoi</button>
+      <h2 id="levelMapTitle">📚</h2>
+    </div>
+    <div class="level-road-wrap">
+      <div class="level-road" id="levelRoad"></div>
+    </div>
+  </div>
+
+  <!-- ===== BATTLE ===== -->
+  <div id="battlePage" class="page" style="display:none;">
+
+    <!-- Consumable bar — clickable buttons, shown above arena during questions -->
+    <div id="powerUpBar" class="power-up-bar" style="display:none;"></div>
+
+    <div class="battle-arena">
+
+      <!-- Player side -->
+      <div class="battle-side player-side">
+        <div class="battle-entity player-entity">
+          <div class="entity-name" id="playerNameBattle">Erou</div>
+          <img src="assets/Student.png" class="entity-sprite" id="playerSprite" alt="Player">
+          <div class="entity-hp">
+            <div class="entity-hp-bar"><div class="entity-hp-fill player-hp" id="playerHpFill" style="width:100%"></div></div>
+            <span id="playerHpText">100/100</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Battle center -->
+      <div class="battle-center">
+        <div class="dialogue-box" id="dialogueBox">
+          <img src="assets/Profesor.png" class="entity-sprite" id="enemySprite2" alt="Professor">
+          <div class="dialogue-text" id="dialogueText" data-i18n="battle.welcome">Miau! Bine ai venit, tânăr aventurier...</div>
+        </div>
+        <div class="lesson-content" id="lessonContent" style="display:none;">
+          <div class="lesson-scroll"><div id="lessonText"></div></div>
+        </div>
+        <div class="question-area" id="questionArea" style="display:none;">
+          <div class="question-box">
+            <div class="question-text" id="questionText"></div>
+            <div class="answers-grid" id="answersGrid"></div>
+            <div id="powerUpHint" class="power-up-hint" style="display:none;"></div>
+          </div>
+        </div>
+        <div class="battle-actions" id="battleActions">
+          <button class="action-btn primary" id="startLessonBtn" data-i18n="battle.study">📖 Studiază Lecția</button>
+          <button class="action-btn" id="startBattleBtn" style="display:none;" data-i18n="battle.fight">⚔️ Începe Bătălia!</button>
+          <button class="action-btn" id="continueBtn"    style="display:none;" data-i18n="battle.continue">➡️ Continuă</button>
+        </div>
+
+        <!-- Persistent buff panel — below the action buttons, centered -->
+        <div id="persistentBuffPanel" class="persistent-buff-panel" style="display:none;"></div>
+      </div>
+
+      <!-- Enemy side -->
+      <div class="battle-side enemy-side">
+        <div class="battle-entity enemy-entity">
+          <div class="entity-name" id="enemyName">Magicianul Whiskers</div>
+          <img src="assets/Profesor.png" class="entity-sprite" id="enemySprite" alt="Enemy">
+          <div class="entity-hp">
+            <div class="entity-hp-bar"><div class="entity-hp-fill" id="enemyHpFill" style="width:100%"></div></div>
+            <span id="enemyHpText">100/100</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button class="back-btn" id="backToLevelMap" data-i18n="battle.back">← Repetă</button>
+  </div>
+
+  <!-- ===== ACCOUNT ===== -->
+  <div id="accountPage" class="page" style="display:none;">
+    <div class="account-scroll">
+      <div class="account-header">
+        <div class="account-avatar" id="accAvatar">🐱</div>
+        <div class="account-title">
+          <h2 id="accName">Erou</h2>
+          <div class="acc-class" id="accClass">Învățăcel novice</div>
+          <div class="acc-badge" id="accBadge">🏅 Începător</div>
+        </div>
+      </div>
+
+      <div class="account-tabs">
+        <button class="account-tab-btn active" data-acc-tab="stats"        data-i18n="account.tab.stats">📊 Statistici</button>
+        <button class="account-tab-btn"        data-acc-tab="achievements" data-i18n="account.tab.achievements">🏆 Realizări</button>
+        <button class="account-tab-btn"        data-acc-tab="settings"     data-i18n="account.tab.settings">⚙️ Setări</button>
+      </div>
+
+      <div id="accTabStats" class="acc-tab-content">
+        <div class="stats-grid">
+          <div class="stat-card"><div class="stat-icon">⚔️</div><div class="stat-label" data-i18n="account.stat.level">Nivel</div><div class="stat-value" id="accLevel">1</div></div>
+          <div class="stat-card"><div class="stat-icon">✨</div><div class="stat-label" data-i18n="account.stat.xp">XP Total</div><div class="stat-value" id="accXP">0</div></div>
+          <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-label" data-i18n="account.stat.gold">Aur</div><div class="stat-value" id="accGold">0</div></div>
+          <div class="stat-card"><div class="stat-icon">🏆</div><div class="stat-label" data-i18n="account.stat.battles">Lupte</div><div class="stat-value" id="accBattles">0</div></div>
+          <div class="stat-card"><div class="stat-icon">📚</div><div class="stat-label" data-i18n="account.stat.lessons">Lecții</div><div class="stat-value" id="accLessons">0</div></div>
+          <div class="stat-card"><div class="stat-icon">🔥</div><div class="stat-label" data-i18n="account.stat.streak">Șir de victorii</div><div class="stat-value" id="accStreak">0</div></div>
+        </div>
+        <div class="progress-section">
+          <h3 data-i18n="account.stats.title">📊 Progresul tău</h3>
+          <div id="realmProgress"></div>
+        </div>
+      </div>
+
+      <div id="accTabAchievements" class="acc-tab-content" style="display:none;">
+        <div class="achievements-section">
+          <h3 data-i18n="account.achievements.title">🏆 Realizări</h3>
+          <div class="achievements-grid" id="achievementsGrid"></div>
+        </div>
+      </div>
+
+      <div id="accTabSettings" class="acc-tab-content" style="display:none;">
+        <div id="settingsContent"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SHOP ===== -->
+  <div id="shopPage" class="page" style="display:none; text-align:center;">
+    <div class="page-header">
+      <h2 data-i18n="shop.title">🛒 Bazarul Tărâmului</h2>
+      <p class="page-sub" data-i18n="shop.sub">Folosește-ți aurul pentru perk-uri.</p>
+    </div>
+    <div class="shop-grid" id="shopGrid" style="margin:0 auto; justify-content:center;"></div>
+  </div>
+
+</div><!-- end appScreen -->
+
+<div id="toast" class="toast"></div>
+
+<div id="victoryOverlay" class="overlay" style="display:none;">
+  <div class="overlay-content victory-content">
+    <div class="victory-cat">🎉🐱🎉</div>
+    <h2 id="victoryTitle" data-i18n="victory.title">Victorie!</h2>
+    <p id="victoryMsg"></p>
+    <div class="reward-box" id="rewardBox"></div>
+    <button class="rpg-btn primary" id="victoryOkBtn" data-i18n="victory.btn">Continuă Quest-ul ➡️</button>
+  </div>
+</div>
+
+<div id="defeatOverlay" class="overlay" style="display:none;">
+  <div class="overlay-content defeat-content">
+    <div class="defeat-cat">😿</div>
+    <h2 data-i18n="defeat.title">Ai pierdut...</h2>
+    <p id="defeatMsg" data-i18n="defeat.msg">Inamicul a fost prea puternic!</p>
+    <button class="rpg-btn" id="defeatRetryBtn"   data-i18n="defeat.retry">🔄 Încearcă din nou</button>
+    <button class="rpg-btn" id="defeatRetreatBtn" data-i18n="defeat.retreat">🏃 Retrage-te</button>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

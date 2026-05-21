@@ -1,0 +1,161 @@
+/* ============================================
+   CatTrainer RPG — Level Map
+   Save as css/levelmap.css
+   ============================================ */
+
+#levelmapPage {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    background: #111;
+}
+
+/* ── Background image (all subjects use background2.png) ── */
+#levelmapPage::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('../assets/background2.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.28;
+    pointer-events: none;
+}
+
+/* ── Content sits above background ── */
+#levelmapPage .page-header,
+#levelmapPage .level-road-wrap {
+    position: relative;
+    z-index: 2;
+}
+
+/* ── Road wrapper ── */
+.level-road-wrap {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 80px 40px;
+    box-sizing: border-box;
+}
+
+/* ── Node button ── */
+.level-node-btn {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 4px solid var(--beige);
+    background: linear-gradient(135deg, #2b1f46, #51307c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+}
+
+.level-node-btn:hover:not(:disabled) {
+    transform: scale(1.12);
+    border-color: var(--gold);
+    box-shadow: 0 0 30px rgba(255,215,0,0.45);
+}
+
+/* ── Type variants ── */
+.level-node-btn.lesson-node { border-color: #a855f7; }
+.level-node-btn.enemy-node  { border-color: #ef4444; }
+
+.level-node-btn.boss-node {
+    width: 115px;
+    height: 115px;
+    font-size: 42px;
+    border-color: gold;
+    background: linear-gradient(135deg, #7a4a00, #ffb700);
+}
+
+.level-node-btn.completed {
+    background: linear-gradient(135deg, #ffcc33, #9a6b00);
+    border-color: gold;
+}
+
+.level-node-btn.locked {
+    opacity: 0.4;
+    filter: grayscale(1);
+    cursor: not-allowed;
+}
+
+/* ── Node label ── */
+.level-node-label {
+    margin-top: 16px;
+    text-align: center;
+    width: 140px;
+}
+
+.level-node-title {
+    font-size: 13px;
+    font-family: var(--font-title);
+    color: #fff4d6;
+    margin-bottom: 6px;
+    line-height: 1.4;
+}
+
+.level-type-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-family: var(--font-title);
+}
+
+.badge-lesson { background: #7c3aed; color: white; }
+.badge-enemy  { background: #ef4444; color: white; }
+.badge-boss   { background: linear-gradient(90deg, gold, #ef4444); color: #111; }
+
+/* ── Boss pulse ── */
+.boss-node:not(.locked):not(.completed) {
+    animation: bossGlow 2s ease-in-out infinite;
+}
+
+/* ── Mobile ── */
+@media (max-width: 768px) {
+    .level-road {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+        width: 100%;
+        padding: 40px 20px;
+    }
+
+    .level-road::before {
+        top: 40px;
+        bottom: 40px;
+        left: 45px;
+        right: auto;
+        width: 8px;
+        height: auto;
+        transform: none;
+        background: linear-gradient(180deg, #d6b36a 0%, #8a4fff 50%, #ff5757 100%);
+    }
+
+    .level-node,
+    .level-node:nth-child(odd),
+    .level-node:nth-child(even) {
+        flex-direction: row;
+        align-items: center;
+        transform: none;
+        width: 100%;
+        min-width: 100%;
+    }
+
+    .level-node-label {
+        margin-top: 0;
+        margin-left: 16px;
+        text-align: left;
+        width: auto;
+    }
+
+    .level-node-btn        { width: 80px;  height: 80px;  font-size: 28px; }
+    .level-node-btn.boss-node { width: 100px; height: 100px; }
+}

@@ -1,0 +1,342 @@
+/* ============================================
+   CatTrainer RPG — Settings, Account & Power-ups
+   Save as css/settings.css
+   ============================================ */
+
+/* ===== ACCOUNT SECTION TITLE ===== */
+.acc-section-title {
+    font-family: var(--font-title);
+    font-size: 18px;
+    color: var(--gold-light);
+    letter-spacing: 2px;
+    margin: 32px 0 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(232,213,170,0.2);
+    text-shadow: 0 0 20px rgba(240,192,64,0.2);
+}
+
+/* ===== SETTINGS SECTIONS ===== */
+.settings-section {
+    background: rgba(26,14,46,0.7);
+    border: 2px solid rgba(232,213,170,0.25);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 16px;
+    transition: var(--transition);
+}
+.settings-section:hover        { border-color: rgba(232,213,170,0.4); }
+.settings-section--danger      { border-color: rgba(192,57,43,0.3); }
+.settings-section--danger:hover{ border-color: rgba(192,57,43,0.55); }
+
+.settings-section-title {
+    font-family: var(--font-title);
+    font-size: 14px;
+    color: var(--gold-light);
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(232,213,170,0.15);
+}
+
+.settings-hint {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--beige);
+    opacity: 0.85;
+    line-height: 1.6;
+    margin-bottom: 14px;
+}
+.settings-hint strong { color: var(--gold-light); opacity: 1; }
+
+.settings-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(76,175,80,0.15);
+    border: 1px solid rgba(76,175,80,0.5);
+    border-radius: var(--radius);
+    padding: 8px 16px;
+    font-family: var(--font-title);
+    font-size: 13px;
+    color: #90EE90;
+}
+.settings-unverified { display: flex; flex-direction: column; gap: 12px; }
+
+/* ===== SETTINGS BUTTONS ===== */
+.settings-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 11px 20px;
+    border-radius: var(--radius);
+    border: 2px solid transparent;
+    font-family: var(--font-title);
+    font-size: 13px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all var(--transition);
+    width: 100%;
+}
+.settings-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
+
+.settings-btn--purple { background: linear-gradient(135deg, var(--purple-dark), var(--purple)); border-color: var(--purple-light); color: var(--beige); }
+.settings-btn--purple:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(123,45,139,0.5); }
+
+.settings-btn--gold { background: linear-gradient(135deg, #8B6914, var(--gold)); border-color: var(--gold-light); color: var(--dark); }
+.settings-btn--gold:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212,160,23,0.5); }
+
+.settings-btn--warning { background: linear-gradient(135deg, #7A4500, #C67A00); border-color: #E8A000; color: var(--cream); }
+.settings-btn--warning:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,120,0,0.5); }
+
+.settings-btn--red { background: linear-gradient(135deg, var(--red-dark), var(--red)); border-color: var(--red-light); color: var(--gold-light); }
+.settings-btn--red:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(192,57,43,0.6); }
+
+.settings-btn--ghost { background: transparent; border-color: rgba(232,213,170,0.3); color: var(--beige); }
+.settings-btn--ghost:hover:not(:disabled) { background: rgba(232,213,170,0.08); border-color: var(--beige); }
+
+/* ===== CONFIRM MODAL ===== */
+.settings-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(26,14,46,0.85);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    padding: 20px;
+}
+.settings-modal-overlay.visible { opacity: 1; }
+
+.settings-modal {
+    background: linear-gradient(135deg, var(--dark-mid), var(--purple-dark));
+    border: 2px solid var(--beige);
+    border-radius: var(--radius-lg);
+    padding: 36px 32px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(26,14,46,0.8);
+    transform: translateY(20px);
+    transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative;
+    overflow: hidden;
+}
+.settings-modal::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(240,192,64,0.08) 0%, transparent 70%);
+    pointer-events: none;
+}
+.settings-modal-overlay.visible .settings-modal { transform: translateY(0); }
+.settings-modal-icon { font-size: 52px; margin-bottom: 14px; animation: catBounce 2s ease-in-out infinite; }
+.settings-modal-title { font-family: var(--font-title); font-size: 20px; color: var(--gold-light); margin-bottom: 12px; letter-spacing: 1px; }
+.settings-modal-msg { font-family: var(--font-body); font-size: 14px; color: var(--beige); line-height: 1.65; margin-bottom: 24px; opacity: 0.9; }
+.settings-modal-actions { display: flex; gap: 12px; }
+.settings-modal-actions .settings-btn { flex: 1; }
+
+/* ===== ACHIEVEMENT DESC ===== */
+.achievement-desc {
+    font-family: var(--font-body);
+    font-size: 11px;
+    color: var(--beige);
+    opacity: 0.7;
+    margin-top: 4px;
+    line-height: 1.4;
+}
+
+/* ===================================================
+   POWER-UP BAR
+   Sits above the battle arena, shown only when the
+   player owns at least one consumable or persistent buff.
+   =================================================== */
+.power-up-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px 20px;
+    background: rgba(10,5,20,0.75);
+    border-bottom: 1px solid rgba(232,213,170,0.15);
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 5;
+}
+
+.pup-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Shared base for both consumable buttons and persistent indicators */
+.pup-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-family: var(--font-title);
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: 2px solid transparent;
+    white-space: nowrap;
+}
+
+/* ── Consumable — clickable button ── */
+.pup-consumable {
+    background: linear-gradient(135deg, rgba(123,45,139,0.6), rgba(74,26,92,0.8));
+    border-color: rgba(168,85,247,0.6);
+    color: var(--beige);
+}
+.pup-consumable:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.05);
+    border-color: var(--gold-light);
+    box-shadow: 0 4px 16px rgba(168,85,247,0.4);
+}
+.pup-consumable:disabled,
+.pup-consumable.pup-used {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none !important;
+    filter: grayscale(1);
+}
+
+/* ── Persistent buff — non-clickable indicator ── */
+.pup-persistent {
+    background: rgba(212,160,23,0.12);
+    border-color: rgba(212,160,23,0.35);
+    color: var(--gold-light);
+    cursor: default;
+    pointer-events: none;
+}
+
+.pup-label {
+    font-size: 11px;
+    opacity: 0.9;
+}
+
+/* Pulsing green dot showing buff is active */
+.pup-active-dot {
+    font-size: 8px;
+    color: #4CAF50;
+    animation: glowPulse 2s ease-in-out infinite;
+    margin-left: 2px;
+}
+
+/* ── Time hourglass hint text under answers ── */
+.power-up-hint {
+    margin-top: 12px;
+    padding: 10px 16px;
+    background: rgba(212,160,23,0.12);
+    border: 1px solid rgba(212,160,23,0.35);
+    border-radius: var(--radius);
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: var(--gold-light);
+    text-align: center;
+    animation: fadeIn 0.3s ease both;
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+    .power-up-bar { padding: 8px 12px; gap: 6px; }
+    .pup-btn      { padding: 5px 10px; font-size: 11px; }
+    .pup-label    { display: none; } /* icon only on small screens */
+}
+
+/* ── Power-up bar section label ── */
+.pup-label-group {
+    font-family: var(--font-title);
+    font-size: 10px;
+    color: var(--beige);
+    opacity: 0.5;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    align-self: center;
+}
+
+/* ── Divider between consumables and buffs ── */
+.pup-divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(232,213,170,0.2);
+    margin: 0 4px;
+}
+
+/* ── Eliminated answer (hint stone) ── */
+.answer-btn.eliminated {
+    opacity: 0.25 !important;
+    cursor: not-allowed !important;
+    text-decoration: line-through;
+    filter: grayscale(1);
+}
+
+/* ── Persistent buff panel (below battle action buttons, centered) ── */
+.persistent-buff-panel {
+    margin-top: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.buff-panel-title {
+    font-family: var(--font-title);
+    font-size: 10px;
+    color: var(--beige);
+    opacity: 0.45;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.buff-panel-items {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+}
+
+.buff-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: rgba(212,160,23,0.1);
+    border: 1px solid rgba(212,160,23,0.35);
+    border-radius: 999px;
+    font-family: var(--font-title);
+    font-size: 11px;
+    color: var(--gold-light);
+    white-space: nowrap;
+}
+
+.buff-item--spent {
+    opacity: 0.3;
+    filter: grayscale(1);
+    border-color: rgba(232,213,170,0.15);
+    color: var(--beige);
+}
+
+.buff-icon   { font-size: 14px; }
+.buff-name   { font-size: 10px; letter-spacing: 0.5px; }
+.buff-status {
+    font-size: 7px;
+    color: #4CAF50;
+    animation: glowPulse 2s ease-in-out infinite;
+}
+.buff-item--spent .buff-status {
+    color: var(--beige);
+    opacity: 0.5;
+    animation: none;
+}

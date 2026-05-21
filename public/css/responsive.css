@@ -1,0 +1,277 @@
+/* ============================================
+   CatTrainer RPG — Background & Responsive UI
+   Save as css/responsive.css
+   ============================================ */
+
+/* ===== FULL-PAGE BACKGROUND =====
+   Put the image directly on body so it sits
+   behind body::before (the gradient overlay).
+   No z-index tricks needed.
+   ============================================ */
+body {
+    background-color: var(--dark);
+    background-image: url('../assets/background.jpeg');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* The existing body::before gradient in main.css
+   already has z-index:0 and sits on top of the
+   body background — no changes needed there.    */
+
+/* ===== TOAST FIX =====
+   main.css already defines the hidden/shown states
+   correctly. We just make sure nothing overrides them.
+   ============================================ */
+.toast {
+    transform: translateX(-50%) translateY(100px) !important;
+}
+.toast.show {
+    transform: translateX(-50%) translateY(0) !important;
+}
+
+/* ===== BASE FLUID FIXES (all screen sizes) ===== */
+
+/* Realm cards — fluid instead of fixed 320px */
+.subject-realms {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 0 4px;
+}
+.realm-card { width: 100%; }
+
+.hud-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+/* Stat cards — fluid instead of fixed 180px */
+.stats-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+    width: 100%;
+}
+.stat-card {
+    width: 100%;
+    height: auto;
+    min-height: 120px;
+    padding: 16px 12px;
+}
+
+/* Shop grid — fluid */
+.shop-grid {
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+    width: 100%;
+    padding: 0 4px;
+}
+
+/* Account scroll — full width */
+.account-scroll {
+    width: 100%;
+    padding: 0 4px;
+}
+
+/* ===== TABLET (max 900px) ===== */
+@media (max-width: 900px) {
+    .subject-realms {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .shop-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+    .stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .battle-arena {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .battle-side.enemy-side { display: none; }
+    .battle-side.player-side {
+        display: flex;
+        justify-content: center;
+    }
+    .battle-entity {
+        min-width: unset;
+        width: 100%;
+        max-width: 340px;
+        padding: 14px;
+    }
+    #playerSprite,
+    #enemySprite { width: 160px; }
+}
+
+/* ===== MOBILE (max 600px) ===== */
+@media (max-width: 600px) {
+    .page { padding: 16px 12px; }
+
+    /* HUD */
+    .hud-bar { padding: 8px 12px; }
+    .hud-center { display: none; }
+    .hud-name { font-size: 12px; }
+    .hud-level { font-size: 11px; }
+    .hud-stat { font-size: 11px; gap: 2px; }
+    .hud-right { gap: 8px; }
+    .icon-btn { font-size: 18px; }
+    .hud-avatar { font-size: 24px; }
+
+    /* Nav */
+    .nav-btn {
+        font-size: 10px;
+        padding: 10px 4px;
+        min-width: unset;
+        letter-spacing: 0;
+    }
+
+    /* Page headers */
+    .page-header h2 { font-size: 18px; }
+    .page-sub { font-size: 12px; }
+
+    /* World map — single column */
+    .subject-realms {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .realm-icon { font-size: 40px; }
+    .realm-name { font-size: 16px; }
+
+    /* Stats — 2 columns */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .stat-card { min-height: 100px; padding: 12px 8px; }
+    .stat-card .stat-icon { font-size: 22px; }
+    .stat-card .stat-value { font-size: 20px; }
+    .stat-card .stat-label { font-size: 10px; }
+
+    /* Shop — single column */
+    .shop-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    /* Account header */
+    .account-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+        padding: 20px 16px;
+    }
+    .account-avatar { font-size: 52px; }
+    .account-title h2 { font-size: 20px; }
+
+    /* Auth */
+    .auth-container { padding: 0 4px; }
+    .game-title { font-size: clamp(28px, 10vw, 44px); }
+    .scroll-container { padding: 20px 16px; }
+    .auth-tabs { margin-bottom: 14px; }
+    .tab-btn { font-size: 12px; padding: 10px 6px; }
+
+    /* Battle */
+    .battle-arena {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 10px 0;
+    }
+    .battle-side { display: none; }
+    .battle-side.player-side {
+        display: flex;
+        justify-content: center;
+    }
+    .battle-entity { padding: 12px; max-width: 100%; }
+    #playerSprite { width: 120px; }
+    #enemySprite2 { width: 60px; }
+
+    .dialogue-box { padding: 14px; gap: 10px; }
+    .dialogue-text { font-size: 13px; }
+
+    .question-box { padding: 14px; }
+    .question-text { font-size: 14px; }
+    .answers-grid { grid-template-columns: 1fr; gap: 8px; }
+    .answer-btn { font-size: 13px; padding: 10px 12px; }
+
+    .battle-actions { flex-direction: column; gap: 8px; }
+    .action-btn { padding: 11px 16px; font-size: 13px; width: 100%; }
+
+    /* Level road — always left-aligned on mobile */
+    .level-road { padding: 10px 0 30px; }
+    .level-road::before { left: 28px; }
+    .level-node,
+    .level-node:nth-child(odd),
+    .level-node:nth-child(even) {
+        flex-direction: row !important;
+        padding: 0 !important;
+        margin-bottom: 28px;
+        align-items: center;
+    }
+    .level-node-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 22px;
+        flex-shrink: 0;
+    }
+    .level-node-btn.boss-node {
+        width: 72px;
+        height: 72px;
+        font-size: 28px;
+    }
+    .level-node-label { margin: 0 0 0 12px; }
+    .level-node-title { font-size: 12px; }
+
+    /* Settings */
+    .settings-section { padding: 16px; }
+    .settings-modal { padding: 24px 18px; }
+    .settings-modal-actions { flex-direction: column; }
+
+    /* Overlays */
+    .overlay-content { padding: 28px 20px; }
+    .overlay-content h2 { font-size: 24px; }
+    .victory-cat, .defeat-cat { font-size: 52px; }
+
+    /* Realm progress */
+    .realm-progress-name { width: 80px; font-size: 12px; }
+    .realm-p-pct { font-size: 11px; }
+
+    /* Achievements */
+    .achievements-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+        gap: 8px;
+    }
+    .achievement-icon { font-size: 24px; }
+    .achievement-name { font-size: 10px; }
+
+    /* Back button */
+    .back-btn { font-size: 11px; padding: 6px 12px; }
+
+    /* Toast — keep hidden transform correct on mobile */
+    .toast {
+        font-size: 12px;
+        padding: 10px 18px;
+        white-space: normal;
+        text-align: center;
+        max-width: 90vw;
+        transform: translateX(-50%) translateY(100px) !important;
+    }
+    .toast.show {
+        transform: translateX(-50%) translateY(0) !important;
+    }
+}
+
+/* ===== VERY SMALL (max 380px) ===== */
+@media (max-width: 380px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .nav-btn { font-size: 9px; padding: 8px 2px; }
+    .hud-stat { display: none; }
+    .hud-right { gap: 6px; }
+    .game-title { font-size: 28px; letter-spacing: 2px; }
+}
