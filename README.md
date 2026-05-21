@@ -5,7 +5,6 @@
 
 [![Firebase Hosting](https://img.shields.io/badge/Hosting-Firebase-orange?logo=firebase)](https://firebase.google.com)
 [![Gemini AI](https://img.shields.io/badge/AI-Gemini%202.5%20Flash-blue?logo=google)](https://ai.google.dev)
-[![License](https://img.shields.io/badge/License-MIT-purple)](LICENSE)
 [![InfoEducație](https://img.shields.io/badge/Concurs-InfoEduca%C8%9Bie%202025-green)](https://infoeducatie.ro)
 
 ---
