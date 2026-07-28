@@ -16,7 +16,8 @@
 
 *Duolingo întâlnește universul RPG: elevii se luptă cu monștri răspunzând la întrebări
 generate live de un model AI, câștigă aur și EXP, deschid cufere, se echipează
-și concurează în clanuri. Link la platformă:*
+și concurează în clanuri.*
+Link la platformă:
 <a href="url">https://learn-mate-ai-db017.web.app/</a>
 
 </div>
