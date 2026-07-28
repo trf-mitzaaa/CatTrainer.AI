@@ -146,5 +146,5 @@ firebase deploy
 ---
 
 <div align="center">
-<sub>Proiect realizat de YOYØ și Mitzaa.</sub>
+<sub>Proiect realizat de YOYØ și mitzaaa.🍓</sub>
 </div>
