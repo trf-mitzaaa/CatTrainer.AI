@@ -1,0 +1,180 @@
+body {
+  background-color: var(--dark);
+  background-image:
+    url('../assets/background.jpeg'),
+    linear-gradient(160deg, #241143 0%, #1A0E2E 45%, #2D1B4E 100%);
+  background-size: cover, cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.toast {
+  transform: translateX(-50%) translateY(100px) !important;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0) !important;
+}
+.screen {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+img { max-width: 100%; }
+
+#subjectRealms,
+.subject-realms {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+.realm-card { width: 100%; }
+
+.shop-grid {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 18px;
+  width: 100%;
+}
+
+@media (max-width: 1100px) {
+  .app-content { padding: 24px 22px 60px; }
+  .home-shell  { grid-template-columns: 280px 1fr; gap: 16px; }
+}
+
+@media (max-width: 880px) {
+  body { background-attachment: scroll; }
+
+  .home-shell { grid-template-columns: 1fr; }
+  .char-panel { max-width: 480px; margin: 0 auto; width: 100%; }
+
+  .quest-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+  .quest-banner .quest-title { justify-content: center; }
+  .quest-go-btn { width: 100%; }
+
+  .side-nav {
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+  }
+  .app-content {
+    padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .toast {
+    bottom: calc(84px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .profile-shell { padding: 6px 2px 40px; }
+}
+
+@media (max-width: 600px) {
+  .page { padding: 12px 6px; }
+
+  .page-header h2 { font-size: 19px; }
+  .page-sub { font-size: 13px; }
+
+  .auth-container { padding: 0 4px; }
+  .game-title { font-size: clamp(28px, 10vw, 44px); }
+  .scroll-container { padding: 20px 16px; }
+  .tab-btn { font-size: 12px; padding: 10px 6px; }
+
+  .overlay-content { padding: 28px 20px; }
+  .overlay-content h2 { font-size: 24px; }
+  .victory-cat, .defeat-cat { font-size: 52px; }
+
+  .settings-section { padding: 16px; }
+  .settings-modal { padding: 24px 18px; }
+  .settings-modal-actions { flex-direction: column; }
+
+  .achievements-grid {
+    grid-template-columns: repeat(auto-fill, minmax(104px, 1fr));
+    gap: 8px;
+  }
+  .achievement-icon { font-size: 24px; }
+  .achievement-name { font-size: 10px; }
+
+  .realm-progress-name { width: 80px; font-size: 12px; }
+  .realm-p-pct { font-size: 11px; }
+
+  .toast {
+    font-size: 12px;
+    padding: 10px 18px;
+    white-space: normal;
+    text-align: center;
+    max-width: 90vw;
+  }
+
+  .profile-name { font-size: 26px; }
+  .profile-name-form { max-width: none; }
+}
+
+@media (max-width: 480px) {
+  .poke-stage { min-height: 300px; }
+  .poke-slot { min-height: 120px; }
+  .poke-slot--enemy  .poke-sprite { width: 88px; }
+  .poke-slot--player .poke-sprite { width: 112px; }
+  .poke-ground                    { width: 126px; height: 34px; }
+  .poke-slot--enemy .poke-ground  { width: 108px; height: 28px; }
+  .poke-plate-name { font-size: 13px; }
+  .poke-hp-tag  { font-size: 9px; padding: 1px 4px; }
+  .poke-exp-tag { font-size: 8px; }
+  .poke-panel { padding: 12px; }
+  .poke-panel .dialogue-text,
+  .poke-panel .question-text { font-size: 16px; }
+  .poke-panel .action-btn { width: 100%; text-align: center; }
+
+  .char-mini-stats b { font-size: 17px; }
+  .profile-stats-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 420px) {
+  .side-menu .ml { display: none; }
+  .side-menu .nav-btn { padding: 9px 12px; }
+  .side-menu .nav-btn .mi { font-size: 21px; }
+}
+
+@media (max-width: 380px) {
+  .landing-hero h1 { font-size: 36px; }
+  .lh-stat b { font-size: 21px; }
+  .poke-plate { padding: 6px 8px 6px 14px; }
+  .poke-hp-text { display: none; }   /* Gen-3 hides enemy numbers anyway */
+  .game-title { font-size: 28px; letter-spacing: 2px; }
+}
+
+.toast {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1),
+                opacity .3s ease,
+                visibility 0s linear .4s !important;
+    white-space: normal !important;
+    max-width: min(92vw, 480px);
+    text-align: center;
+}
+.toast.show {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1),
+                opacity .3s ease !important;
+}
+
+@media (max-width: 880px) {
+    .toast {
+        bottom: calc(96px + env(safe-area-inset-bottom, 0px)) !important;
+    }
+}
+.overlay > div {
+    max-height: 88vh;
+    max-height: 88dvh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 880px) {
+    .inv-rpg, .msn-shell, .clan-shell, .shop2-shell {
+        padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px));
+    }
+}

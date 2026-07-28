@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CatTrainer.AI</title>
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="stylesheet" href="css/settings.css" />
+  <link rel="stylesheet" href="css/onboarding.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link rel="stylesheet" href="css/appshell.css" />
+  <link rel="stylesheet" href="css/battle.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <link rel="icon" type="image/jpeg" href="assets/Student.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400..700&family=VT323&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+
+
+  <!-- ~~~~~ pagina principală ~~~~~ -->
+  <div id="landingScreen" class="screen active">
+
+    <!-- efecte -->
+    <div class="landing-fx" aria-hidden="true">
+      <span class="fx-orb fx-orb--1"></span>
+      <span class="fx-orb fx-orb--2"></span>
+      <span class="fx-orb fx-orb--3"></span>
+      <span class="fx-star" style="top:12%; left:18%"></span>
+      <span class="fx-star" style="top:26%; left:74%; animation-delay:.7s"></span>
+      <span class="fx-star" style="top:58%; left:8%;  animation-delay:1.4s"></span>
+      <span class="fx-star" style="top:70%; left:88%; animation-delay:.3s"></span>
+      <span class="fx-star" style="top:84%; left:38%; animation-delay:1.1s"></span>
+    </div>
+
+    <div class="landing">
+
+      <nav class="landing-nav">
+        <div class="landing-brand">
+          <span class="landing-mark">🐱</span>
+          <span class="landing-brand-text">CatTrainer.AI</span>
+        </div>
+        <div class="landing-nav-actions">
+          <button class="landing-link-btn" id="landingLoginBtn" type="button">Autentificare</button>
+          <button class="landing-cta-btn" id="landingStartBtn" type="button">Începe aventura</button>
+        </div>
+      </nav>
+
+      <header class="landing-hero">
+        <div class="landing-hero-copy">
+          <div class="landing-eyebrow">✦ Învăța prin joc ✦</div>
+          <h1>Învață. Luptă.<br><span class="accent">Devino legendă</span></h1>
+          <p>
+            Lecții și dueluri generate de AI pentru materiile tale de la școală.
+            Răspunde corect, doboară adversarii și urcă în nivel - cunoașterea
+            este arma ta.
+          </p>
+          <div class="landing-hero-actions">
+            <button class="landing-btn-lg primary" id="landingStartBtn2" type="button">Creează-ți eroul</button>
+            <button class="landing-btn-lg ghost" id="landingLoginBtn2" type="button">Am deja un erou</button>
+          </div>
+          <div class="landing-hero-stats">
+            <div class="lh-stat"><b>7</b><span>materii</span></div>
+            <div class="lh-stat"><b>35+</b><span>niveluri</span></div>
+            <div class="lh-stat"><b>20+</b><span>echipamente</span></div>
+          </div>
+        </div>
+
+        <!-- mini diagramă  -->
+        <div class="landing-hero-scene">
+          <div class="scene-frame">
+            <div class="scene-plate scene-plate--enemy">
+              <span class="scene-plate-name">Magicianul Whiskers</span>
+              <div class="scene-hp"><i style="width:46%"></i></div>
+            </div>
+            <div class="scene-slot scene-slot--enemy">
+              <span class="scene-ground"></span>
+              <img src="assets/Profesor.png" alt="">
+            </div>
+            <div class="scene-slot scene-slot--player">
+              <span class="scene-ground"></span>
+              <img src="assets/Student.png" alt="">
+            </div>
+            <div class="scene-plate scene-plate--player">
+              <span class="scene-plate-name">Tu</span>
+              <div class="scene-hp"><i style="width:88%"></i></div>
+            </div>
+            <div class="scene-msg">Răspuns corect! <span class="scene-cursor">︾</span></div>
+          </div>
+        </div>
+      </header>
+
+      <section class="landing-section">
+        <h2 class="landing-title"><span class="lt-line"></span>Ce te așteaptă<span class="lt-line"></span></h2>
+        <p class="landing-sub">O aventură de neuitat, unde în timp ce înveți, devii mai puternic.
+        </p>
+        <div class="landing-features">
+          <div class="l-card">
+            <div class="l-card-ic">📚</div>
+            <h3>Lecții pe nivelul tău</h3>
+            <p>Fiecare tărâm conține lecții clare, adaptată clasei și obiectivelor tale, urmată de întrebări care îți
+              testează înțelegerea.</p>
+          </div>
+          <div class="l-card">
+            <div class="l-card-ic">⚔️</div>
+            <h3>Dueluri în stil RPG</h3>
+            <p>Întrebările devin lupte pe viață și... puncte de viață. Răspunsurile corecte lovesc inamicul, cele
+              greșite te lovesc pe tine.</p>
+          </div>
+          <div class="l-card">
+            <div class="l-card-ic">👑</div>
+            <h3>Boși de tărâm</h3>
+            <p>La capătul fiecărei materii te așteaptă o confruntare finală care îți pune la încercare tot ce ai
+              învățat.</p>
+          </div>
+          <div class="l-card">
+            <div class="l-card-ic">📈</div>
+            <h3>Progres persistent</h3>
+            <p>EXP, nivele, aur, misiuni, echipamente, realizări — totul se salvează în contul tău și te așteaptă la
+              următoarea sesiune.</p>
+          </div>
+          <div class="l-card">
+            <div class="l-card-ic">🛒</div>
+            <h3>Magazin cu obiecte</h3>
+            <p>Aurul câștigat în lupte cumpără consumabile și Power-up-uri care îți dau un avantaj în duelurile grele.
+            </p>
+          </div>
+          <div class="l-card">
+            <div class="l-card-ic">🌐</div>
+            <h3>În limba ta</h3>
+            <p>Interfața și conținutul generat sunt disponibile în română, engleză, franceză, germană și spaniolă.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="landing-section">
+        <h2 class="landing-title"><span class="lt-line"></span>Șapte tărâmuri<span class="lt-line"></span></h2>
+        <p class="landing-sub">Fiecare materie este un tărâm cu propriile niveluri/lecții și la final te așteaptă un
+          boss care te v-a pune la încercare.</p>
+        <div class="landing-subjects">
+          <div class="l-chip"><span>🌿</span>Biologie</div>
+          <div class="l-chip"><span>📐</span>Matematică</div>
+          <div class="l-chip"><span>📜</span>Istorie</div>
+          <div class="l-chip"><span>🧪</span>Chimie</div>
+          <div class="l-chip"><span>⚡</span>Fizică</div>
+          <div class="l-chip"><span>📖</span>Literatură</div>
+          <div class="l-chip"><span>💻</span>Informatică</div>
+        </div>
+      </section>
+
+      <section class="landing-section">
+        <h2 class="landing-title"><span class="lt-line"></span>Cum începi?<span class="lt-line"></span></h2>
+        <div class="landing-steps">
+          <div class="l-step">
+            <h3>Creează-ți eroul</h3>
+            <p>La creearea eroului vei primi câteva întrebări scurte despre clasă și obiective care calibrează
+              dificultatea pentru tine.</p>
+          </div>
+          <div class="l-step">
+            <h3>Alege un tărâm</h3>
+            <p>Studiezi lecția, apoi intri în primul duel. Fiecare victorie deschide nivelul următor.</p>
+          </div>
+          <div class="l-step">
+            <h3>Devino legendă</h3>
+            <p>Strângi EXP și aur, dobori boșii și îți completezi colecția de realizări.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="landing-final">
+        <h2>Tărâmurile te așteaptă.</h2>
+        <p>Contul e gratuit și durează câteva secunde.</p>
+        <button class="landing-btn-lg primary" id="landingStartBtn3" type="button">Începe acum</button>
+      </section>
+
+      <footer class="landing-footer">
+        CatTrainer.AI <br>
+        Made with love by YOYØ and Mitzaa
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- ~~~~~ pagina de Login/Register ~~~~~ -->
+  <div id="authScreen" class="screen" style="display:none;">
+    <div class="auth-container">
+
+      <div class="auth-logo">
+        <button class="auth-back-btn" id="authBackBtn" type="button">Înapoi</button>
+        <div class="cat-logo">
+          <span class="cat-face">🐱</span>
+          <div class="logo-glow"></div>
+        </div>
+        <h1 class="game-title">CatTrainer.AI</h1>
+        <p class="game-subtitle" data-i18n="auth.subtitle">⚔️ Tărâmul învățării ⚔️</p>
+        <a class="admin-access-link" id="adminLink" href="admin.html" style="display:none;">🔑 Panou administrator</a>
+      </div>
+
+      <div class="auth-tabs">
+        <button class="tab-btn active" data-tab="login" data-i18n="auth.tab.login">Am deja erou</button>
+        <button class="tab-btn" data-tab="register" data-i18n="auth.tab.register">Creează un erou</button>
+      </div>
+
+      <!-- login -->
+      <div id="loginTab" class="auth-form-container">
+        <div class="scroll-container">
+          <div class="scroll-header" data-i18n="auth.login.header">📜 Login</div>
+          <div class="auth-methods">
+            <button class="auth-btn google-btn" id="googleLoginBtn">
+              <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="G" width="20" />
+              <span data-i18n="auth.google">Continuă cu Google</span>
+            </button>
+            <div class="divider"><span>or</span></div>
+            <input type="email" id="loginEmail" class="rpg-input" data-i18n="auth.email.placeholder"
+              placeholder="E-Mail" />
+            <input type="password" id="loginPassword" class="rpg-input" data-i18n="auth.pass.placeholder"
+              placeholder="Parola" />
+            <button class="rpg-btn primary" id="emailLoginBtn" data-i18n="auth.login.btn">⚔️ Intră</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- register -->
+      <div id="registerTab" class="auth-form-container" style="display:none;">
+        <div class="scroll-container">
+          <div class="scroll-header" data-i18n="auth.register.header">📜 Crează-ți eroul</div>
+          <input type="text" id="regName" class="rpg-input" data-i18n="auth.name.placeholder"
+            placeholder="Nume (ex: MisterEpic)" />
+          <input type="email" id="regEmail" class="rpg-input" data-i18n="auth.email.placeholder"
+            placeholder="E-Mail (ex: misterepic@epic.com)" />
+          <input type="password" id="regPassword" class="rpg-input" data-i18n="auth.pass.placeholder"
+            placeholder="Parola (ex: immisterepic2!)" />
+          <button class="rpg-btn primary" id="emailRegisterBtn" data-i18n="auth.register.btn">🌟 Începe-ți
+            Aventura</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ~~~~~ panoul principal ~~~~~ -->
+  <div id="appScreen" class="screen" style="display:none;">
+    <div class="app-shell">
+
+      <!-- bara din stânga  -->
+      <aside class="side-nav">
+
+        <div class="side-brand">
+          <span class="side-brand-name">CatTrainer.AI</span>
+          <span class="side-brand-line"></span>
+        </div>
+
+        <div class="side-char">
+          <div class="side-avatar-ring">
+            <div class="side-avatar" id="hudAvatar">🐱</div>
+          </div>
+          <div class="side-char-name" id="hudName">Erou</div>
+          <div class="side-char-level">Nivel <b id="hudLevel">1</b></div>
+          <div class="side-xp-track">
+            <div class="side-xp-fill" id="xpFill" style="width:0%"></div>
+          </div>
+          <div class="side-xp-label"><span id="xpVal">0</span> / <span id="xpNeedVal">100</span> EXP</div>
+        </div>
+
+        <nav class="side-menu">
+          <button class="nav-btn active" data-page="home" type="button">
+            <span class="mi">🏠</span><span class="ml" data-i18n="nav.home">Acasă</span>
+          </button>
+          <button class="nav-btn" data-page="worldmap" type="button">
+            <span class="mi">🗺️</span><span class="ml" data-i18n="nav.worldmap">Harta Lumii</span>
+          </button>
+          <button class="nav-btn" data-page="profile" type="button">
+            <span class="mi">👤</span><span class="ml" data-i18n="nav.profile">Profil</span>
+          </button>
+          <button class="nav-btn" data-page="inventory" type="button">
+            <span class="mi">🎒</span><span class="ml" data-i18n="nav.inventory">Inventar</span>
+          </button>
+          <button class="nav-btn" data-page="missions" type="button">
+            <span class="mi">📜</span><span class="ml" data-i18n="nav.missions">Misiuni</span>
+          </button>
+          <button class="nav-btn" data-page="clan" type="button">
+            <span class="mi">🛡️</span><span class="ml" data-i18n="nav.clan">Clanuri</span>
+          </button>
+          <button class="nav-btn" data-page="shop" type="button">
+            <span class="mi">🛒</span><span class="ml" data-i18n="nav.shop">Magazin</span>
+          </button>
+        </nav>
+
+        <div class="side-bottom">
+          <div class="side-stat">
+            <span class="side-stat-lbl">Aur</span>
+            <b id="hudGold">0</b>
+          </div>
+          <div class="side-bottom-actions">
+            <button class="side-icon-btn" id="sfxToggleBtn" type="button" title="Sunete" data-no-sfx>Mute</button>
+            <button class="side-logout" id="logoutBtn" type="button">Deconectare</button>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- ~~~~~ conținut ~~~~~ -->
+      <main class="app-content">
+
+        <!-- ~~~~~ acasă (conținutul este încărcat de către un script js) ~~~~~ -->
+        <div id="homePage" class="page active"></div>
+
+        <!-- ~~~~~ inventar (la fel) ~~~~~ -->
+        <div id="inventoryPage" class="page" style="display:none;"></div>
+
+        <!-- ~~~~~ misiuni (și aici) ~~~~~ -->
+        <div id="missionsPage" class="page" style="display:none;"></div>
+
+        <!-- ~~~~~ clan (da... și aici) ~~~~~ -->
+        <div id="clanPage" class="page" style="display:none;"></div>
+
+        <!-- ~~~~~ harta lumii ~~~~~ -->
+        <div id="worldmapPage" class="page" style="display:none; text-align:center;">
+          <div class="page-header">
+            <h2 data-i18n="worldmap.title">🗺️ Alege-ți Materia</h2>
+            <p class="page-sub" data-i18n="worldmap.sub">Alege-ți Tărâmul pentru a-ți începe aventura!</p>
+          </div>
+          <div class="subject-realms" id="subjectRealms" style="margin:0 auto; justify-content:center;"></div>
+        </div>
+
+        <!-- ~~~~~ niveluri ~~~~~ -->
+        <div id="levelmapPage" class="page" style="display:none;">
+          <div class="page-header">
+            <button class="back-btn" id="backToRealms" data-i18n="levelmap.back">← Înapoi la tărâmurile tale.</button>
+            <h2 id="levelMapTitle">📚</h2>
+          </div>
+          <div class="level-road-wrap">
+            <div class="level-road" id="levelRoad"></div>
+          </div>
+        </div>
+
+        <!-- ~~~~~ bătălii (în stil pokemon (nintendo don't sue me pls)) ~~~~~ -->
+        <div id="battlePage" class="page" style="display:none;">
+          <div class="poke-battle">
+
+            <div class="poke-stage">
+
+              <div class="poke-plate poke-plate--enemy">
+                <div class="poke-plate-top">
+                  <span class="poke-plate-name" id="enemyName">Magicianul Whiskers</span>
+                  <span class="poke-lv" id="enemyLvBattle">Lv.1</span>
+                </div>
+                <div class="poke-hp-row">
+                  <span class="poke-hp-tag">HP</span>
+                  <div class="poke-hp-track">
+                    <div class="poke-hp-fill" id="enemyHpFill" style="width:100%"></div>
+                  </div>
+                </div>
+                <div class="poke-hp-text" id="enemyHpText">100/100</div>
+              </div>
+
+              <div class="poke-slot poke-slot--enemy">
+                <div class="poke-ground"></div>
+                <img src="assets/Profesor.png" class="poke-sprite" id="enemySprite" alt="Enemy">
+              </div>
+              <div class="poke-slot poke-slot--player">
+                <div class="poke-ground"></div>
+                <img src="assets/Student.png" class="poke-sprite" id="playerSprite" alt="Player">
+              </div>
+
+              <div class="poke-plate poke-plate--player">
+                <div class="poke-plate-top">
+                  <span class="poke-plate-name" id="playerNameBattle">Erou</span>
+                  <span class="poke-lv" id="playerLvBattle">Lv.1</span>
+                </div>
+                <div class="poke-hp-row">
+                  <span class="poke-hp-tag">HP</span>
+                  <div class="poke-hp-track">
+                    <div class="poke-hp-fill player-hp" id="playerHpFill" style="width:100%"></div>
+                  </div>
+                </div>
+                <div class="poke-hp-text" id="playerHpText">100/100</div>
+                <div class="poke-exp-row">
+                  <span class="poke-exp-tag">EXP</span>
+                  <div class="poke-exp-track">
+                    <div class="poke-exp-fill" id="battleExpFill" style="width:0%"></div>
+                  </div>
+                </div>
+                <div class="poke-items" id="powerUpBar" style="display:none;"></div>
+              </div>
+
+            </div>
+
+            <div class="poke-panel">
+              <div class="dialogue-box" id="dialogueBox">
+                <img src="assets/Profesor.png" class="poke-portrait" id="enemySprite2" alt="">
+                <div class="dialogue-text" id="dialogueText" data-i18n="battle.welcome">Miau! Bine ai venit, tânăr
+                  aventurier...</div>
+              </div>
+
+              <div class="lesson-content" id="lessonContent" style="display:none;">
+                <div class="lesson-scroll">
+                  <div id="lessonText"></div>
+                </div>
+              </div>
+
+              <div class="question-area" id="questionArea" style="display:none;">
+                <div class="question-text" id="questionText"></div>
+                <div class="answers-grid" id="answersGrid"></div>
+                <div id="powerUpHint" class="power-up-hint" style="display:none;"></div>
+              </div>
+
+              <div class="battle-actions" id="battleActions">
+                <button class="action-btn primary" id="startLessonBtn" data-i18n="battle.study">📖 Studiază
+                  Lecția</button>
+                <button class="action-btn" id="startBattleBtn" style="display:none;" data-i18n="battle.fight">⚔️ Începe
+                  Bătălia!</button>
+                <button class="action-btn" id="continueBtn" style="display:none;" data-i18n="battle.continue">➡️
+                  Continuă</button>
+              </div>
+
+              <div id="persistentBuffPanel" class="persistent-buff-panel" style="display:none;"></div>
+            </div>
+
+            <button class="back-btn poke-back" id="backToLevelMap" data-i18n="battle.back">Repetă</button>
+          </div>
+        </div>
+
+        <!-- ~~~~~ profil ~~~~~ -->
+        <div id="profilePage" class="page" style="display:none;">
+          <div class="profile-shell">
+
+            <section class="rpg-panel profile-card">
+              <div class="profile-avatar-col">
+                <div class="profile-avatar" id="accAvatar">🐱</div>
+                <button class="rpg-panel-btn" id="avatarEditBtn" type="button">Schimbă avatarul</button>
+              </div>
+
+              <div class="profile-info-col">
+                <div class="profile-name-row">
+                  <h2 class="profile-name" id="accName">Erou</h2>
+                  <button class="profile-name-edit" id="nameEditBtn" type="button" title="Schimbă numele">✎</button>
+                </div>
+
+                <div class="profile-name-form" id="nameEditForm" style="display:none;">
+                  <input id="nameEditInput" class="rpg-input" maxlength="20" placeholder="Nume nou" />
+                  <div class="profile-name-actions">
+                    <button class="rpg-panel-btn rpg-panel-btn--gold" id="nameSaveBtn" type="button">Salvează</button>
+                    <button class="rpg-panel-btn" id="nameCancelBtn" type="button">Anulează</button>
+                  </div>
+                </div>
+
+                <div class="profile-class-line">
+                  <span id="accClass">Novice</span>
+                  <span class="profile-sep">·</span>
+                  <span id="accBadge">Începător</span>
+                </div>
+
+                <div class="profile-level-row">
+                  <span class="profile-level-label">Nivel <b id="profLevelInline">1</b></span>
+                  <div class="profile-xp-track">
+                    <div class="profile-xp-fill" id="profXpFill"></div>
+                  </div>
+                  <span class="profile-xp-label" id="profXpLabel">0 / 100 EXP</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- taburi -->
+            <div class="account-tabs profile-tabs">
+              <button class="account-tab-btn active" data-acc-tab="stats"
+                data-i18n="account.tab.stats">Statistici</button>
+              <button class="account-tab-btn" data-acc-tab="achievements"
+                data-i18n="account.tab.achievements">Realizări</button>
+              <button class="account-tab-btn" data-acc-tab="settings" data-i18n="account.tab.settings">Setări</button>
+            </div>
+
+            <div id="accTabStats" class="acc-tab-content">
+              <div class="rpg-panel profile-stats-panel">
+                <div class="profile-stats-grid">
+                  <div class="pstat"><span class="pstat-num" id="accLevel">1</span><span class="pstat-lbl">Nivel</span>
+                  </div>
+                  <div class="pstat"><span class="pstat-num" id="accXP">0</span><span class="pstat-lbl">EXP total</span>
+                  </div>
+                  <div class="pstat"><span class="pstat-num" id="accGold">0</span><span class="pstat-lbl">Aur</span>
+                  </div>
+                  <div class="pstat"><span class="pstat-num" id="accBattles">0</span><span class="pstat-lbl">Lupte
+                      câștigate</span></div>
+                  <div class="pstat"><span class="pstat-num" id="accLessons">0</span><span class="pstat-lbl">Lecții
+                      terminate</span></div>
+                  <div class="pstat"><span class="pstat-num" id="accStreak">0</span><span class="pstat-lbl">Serie de
+                      victorii</span></div>
+                </div>
+              </div>
+              <div class="rpg-panel profile-progress-panel">
+                <h3 class="rpg-panel-title" data-i18n="account.stats.title">Progresul tău</h3>
+                <div id="realmProgress"></div>
+              </div>
+            </div>
+
+            <div id="accTabAchievements" class="acc-tab-content" style="display:none;">
+              <div class="rpg-panel">
+                <h3 class="rpg-panel-title" data-i18n="account.achievements.title">Realizări</h3>
+                <div class="achievements-grid" id="achievementsGrid"></div>
+              </div>
+            </div>
+
+            <div id="accTabSettings" class="acc-tab-content" style="display:none;">
+              <div id="settingsContent"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ~~~~~ magazin ~~~~~ -->
+        <div id="shopPage" class="page" style="display:none; text-align:center;">
+          <div class="page-header">
+            <h2 data-i18n="shop.title">🛒 Magazinul Tărâmului</h2>
+            <p class="page-sub" data-i18n="shop.sub">Folosește-ți aurul pentru perk-uri și consumabile.</p>
+          </div>
+          <div class="shop-grid" id="shopGrid" style="margin:0 auto; justify-content:center;"></div>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <div id="victoryOverlay" class="overlay" style="display:none;">
+    <div class="overlay-content victory-content">
+      <div class="victory-cat">🎉🐱🎉</div>
+      <h2 id="victoryTitle" data-i18n="victory.title">Victorie!</h2>
+      <p id="victoryMsg"></p>
+      <div class="reward-box" id="rewardBox"></div>
+      <button class="rpg-btn primary" id="victoryOkBtn" data-i18n="victory.btn">Continuă Quest-ul</button>
+    </div>
+  </div>
+
+  <div id="defeatOverlay" class="overlay" style="display:none;">
+    <div class="overlay-content defeat-content">
+      <div class="defeat-cat">😿</div>
+      <h2 data-i18n="defeat.title">Ai pierdut...</h2>
+      <p id="defeatMsg" data-i18n="defeat.msg">Inamicul a fost prea puternic. Nu ai studiat destul!</p>
+      <button class="rpg-btn" id="defeatRetryBtn" data-i18n="defeat.retry">Încearcă din nou</button>
+      <button class="rpg-btn" id="defeatRetreatBtn" data-i18n="defeat.retreat">Retrage-te</button>
+    </div>
+  </div>
+
+  <script type="module" src="js/main.js"></script>
+</body>
+
+</html>

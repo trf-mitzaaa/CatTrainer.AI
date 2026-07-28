@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CatTrainer.AI — Admin panel</title>
+  <style>
+    body {
+      font-family: monospace;
+      background: #1A0E2E;
+      color: #E8D5AA;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 16px 60px;
+      line-height: 1.5;
+    }
+    h1 { color: #F0C040; font-size: 22px; }
+    h2 { color: #F0C040; font-size: 16px; margin-top: 28px; border-bottom: 1px solid #4A1A5C; padding-bottom: 6px; }
+    p  { font-size: 13px; opacity: .85; }
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin: 6px 0;
+      font-size: 14px;
+    }
+    input[type="number"] {
+      width: 110px;
+      padding: 6px 8px;
+      background: #2D1B4E;
+      color: #F5E6C8;
+      border: 1px solid #7B2D8B;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    button {
+      margin-top: 24px;
+      padding: 12px 28px;
+      font-family: monospace;
+      font-size: 15px;
+      background: #D4A017;
+      color: #1A0E2E;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:disabled { opacity: .5; cursor: wait; }
+    #status { margin-top: 14px; font-size: 14px; min-height: 20px; }
+    .ok    { color: #7ee787; }
+    .err   { color: #ff8a80; }
+    .warn  { color: #ffcc4d; }
+    code   { background: #2D1B4E; padding: 2px 6px; border-radius: 4px; }
+    #gate  { padding: 30px 0; }
+    #panel { display: none; }
+    .grid3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 20px; }
+    @media (max-width: 560px) { .grid3 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <h1>Admin — Admin Panel</h1>
+
+  <div id="gate">
+    <p id="gateMsg">Se verifică autentificarea...</p>
+
+    <div id="loginForm" style="display:none; max-width:320px;">
+      <label>Email <input type="email" id="adminEmail" style="width:180px;"></label>
+      <label>Parolă <input type="password" id="adminPass" style="width:180px;"></label>
+      <button id="adminLoginBtn" type="button" style="margin-top:10px;">Autentificare</button>
+    </div>
+  </div>
+
+  <div id="panel">
+
+    <h2>Statistici AI</h2>
+    <p>Consum real de tokeni, raportat de API la fiecare apel.</p>
+    <button id="aiStatsRefresh" type="button">Reîncarcă</button>
+    <div id="aiStatsBox"><p style="opacity:.6">Se încarcă...</p></div>
+
+    <h2>Obiecte magazin (custom)</h2>
+    <p>Obiectul custom preia COMPORTAMENTUL obiectului de bază ales (efectul în
+       luptă e identic) — doar numele, iconița, prețul și categoria diferă.</p>
+    <label>Obiect de bază
+      <select id="csBase">
+        <option value="hp_potion">Poțiune de Viață</option>
+        <option value="iron_heart">Inimă de Fier</option>
+        <option value="lightning_scroll">Pergament Fulger</option>
+        <option value="chaos_dice">Zarurile Haosului</option>
+        <option value="assassin_blade">Lama Asasinului</option>
+        <option value="mage_core">Nucleu de Mag</option>
+        <option value="shield">Scut Magic</option>
+        <option value="mirror_shard">Ciob de Oglindă</option>
+        <option value="hint_stone">Piatra Indiciilor</option>
+        <option value="time_hourglass">Clepsidra Timpului</option>
+        <option value="knowledge_orb">Orbul Cunoașterii</option>
+        <option value="xp_boost">Amplificator XP</option>
+        <option value="cat_charm">Talismanul Pisicii</option>
+        <option value="lucky_coin">Moneda Norocului</option>
+      </select>
+    </label>
+    <label>Nume <input type="text" id="csName" style="width:220px" placeholder="ex: Elixirul Dragonului"></label>
+    <label>Iconiță (emoji) <input type="text" id="csIcon" style="width:80px" placeholder="🐉"></label>
+    <label>Preț (aur) <input type="number" id="csPrice" min="1" style="width:100px"></label>
+    <label>Categorie
+      <select id="csCat">
+        <option value="potions">Poțiuni & Vitalitate</option>
+        <option value="combat">Arme & Atac</option>
+        <option value="defense">Apărare</option>
+        <option value="knowledge">Cunoaștere</option>
+        <option value="fortune">Noroc & Prosperitate</option>
+      </select>
+    </label>
+    <button id="csAddBtn" type="button">+ Adaugă în listă</button>
+    <button id="csSaveBtn" type="button">Salvează obiectele</button>
+    <div id="csList"></div>
+    <div id="csStatus"></div>
+
+    <h2>Jucători — caută, editează, șterge</h2>
+    <label>Email sau nume exact <input type="text" id="pSearch" style="width:220px;"></label>
+    <button id="pSearchBtn" type="button" style="margin-top:6px; padding:8px 16px;">Caută</button>
+    <div id="pResults" style="margin-top:10px;"></div>
+    <div id="pEditor" style="display:none; border:1px solid #4A1A5C; border-radius:6px; padding:12px; margin-top:10px;">
+      <p id="pEditorTitle" style="color:#F0C040;"></p>
+      <div class="grid3">
+        <label>Aur <input type="number" id="pGold" min="0"></label>
+        <label>XP <input type="number" id="pXp" min="0"></label>
+        <label>Nivel <input type="number" id="pLevel" min="1"></label>
+        <label>Lupte câștigate <input type="number" id="pBattles" min="0"></label>
+        <label>Lecții <input type="number" id="pLessons" min="0"></label>
+        <label>Monede clan <input type="number" id="pClanCoins" min="0"></label>
+      </div>
+      <button id="pSaveBtn" type="button" style="margin-top:12px; padding:8px 16px;">Salvează jucătorul</button>
+      <button id="pDeleteBtn" type="button" style="margin-top:12px; padding:8px 16px; background:#C0392B; color:#F5E6C8;">Șterge jucătorul</button>
+      <div id="pStatus" style="margin-top:8px; font-size:13px;"></div>
+    </div>
+
+    <h2>Config luptă (HP)</h2>
+    <label>HP inamic obișnuit <input type="number" id="bEnemyHp" min="10"></label>
+    <label>HP boss <input type="number" id="bBossHp" min="10"></label>
+    <label>HP jucător <input type="number" id="bPlayerHp" min="10"></label>
+    <label>Model AI (întrebări & lecții)
+      <select id="bAiModel">
+        <option value="claude-haiku-4-5">Haiku 4.5 — rapid & ieftin</option>
+        <option value="claude-sonnet-4-6">Sonnet 4.6 — mai capabil dar mai scump</option>
+      </select>
+    </label>
+    <button id="bSaveBtn" type="button" style="margin-top:10px; padding:8px 16px;">Salvează config luptă</button>
+    <div id="bStatus" style="margin-top:8px; font-size:13px;"></div>
+
+    <h2>Etape custom (adăugate la finalul materiei)</h2>
+    <p>Etapele originale din cod nu pot fi șterse de aici — doar cele adăugate de admin.</p>
+    <label>Materie
+      <select id="sSubject" style="padding:6px 8px; background:#2D1B4E; color:#F5E6C8; border:1px solid #7B2D8B; border-radius:4px;">
+        <option value="biology">Biologie</option>
+        <option value="math">Matematică</option>
+        <option value="history">Istorie</option>
+        <option value="chemistry">Chimie</option>
+        <option value="physics">Fizică</option>
+        <option value="literature">Literatură</option>
+        <option value="computerscience">Informatică</option>
+      </select>
+    </label>
+    <div id="sList" style="margin:10px 0;"></div>
+    <div style="border-top:1px solid #4A1A5C; padding-top:10px;">
+      <label>Tip
+        <select id="sType" style="padding:6px 8px; background:#2D1B4E; color:#F5E6C8; border:1px solid #7B2D8B; border-radius:4px;">
+          <option value="lesson">Lecție</option>
+          <option value="enemy">Inamic</option>
+          <option value="boss">Boss</option>
+        </select>
+      </label>
+      <label>Titlu <input type="text" id="sTitle" style="width:220px;"></label>
+      <label>Topic (trimis la AI) <input type="text" id="sTopic" style="width:220px;"></label>
+      <label>Nume inamic (opțional) <input type="text" id="sEnemy" style="width:220px;"></label>
+      <button id="sAddBtn" type="button" style="margin-top:10px; padding:8px 16px;">Adaugă etapa</button>
+      <div id="sStatus" style="margin-top:8px; font-size:13px;"></div>
+    </div>
+
+    <h2>Șansă de cufăr la victorie (%)</h2>
+    <label>Inamic obișnuit <input type="number" id="dropEnemy" min="0" max="100" step="1"></label>
+    <label>Boss <input type="number" id="dropBoss" min="0" max="100" step="1"></label>
+
+    <h2>Ce tier de cufăr pică (ponderi relative)</h2>
+    <p>Nu trebuie să însumeze 100 — sunt ponderi. Ex: 70/25/5.</p>
+    <label>Cufăr Comun <input type="number" id="wCommon" min="0" step="1"></label>
+    <label>Cufăr Rar <input type="number" id="wRare" min="0" step="1"></label>
+    <label>Cufăr Epic <input type="number" id="wEpic" min="0" step="1"></label>
+
+    <h2>Conținutul cuferelor (ponderi pe categorie)</h2>
+    <div class="grid3">
+      <div>
+        <p><b>Comun</b></p>
+        <label>Echipament <input type="number" id="cEquip" min="0"></label>
+        <label>Consumabil <input type="number" id="cCons" min="0"></label>
+        <label>Aur <input type="number" id="cGold" min="0"></label>
+      </div>
+      <div>
+        <p><b>Rar</b></p>
+        <label>Echipament <input type="number" id="rEquip" min="0"></label>
+        <label>Consumabil <input type="number" id="rCons" min="0"></label>
+        <label>Aur <input type="number" id="rGold" min="0"></label>
+      </div>
+      <div>
+        <p><b>Epic</b></p>
+        <label>Echipament <input type="number" id="eEquip" min="0"></label>
+        <label>Consumabil <input type="number" id="eCons" min="0"></label>
+        <label>Aur <input type="number" id="eGold" min="0"></label>
+      </div>
+    </div>
+
+    <h2>Cantitate de aur (când pică aur)</h2>
+    <label>Din cufăr comun <input type="number" id="gCommon" min="0"></label>
+    <label>Din cufăr rar <input type="number" id="gRare" min="0"></label>
+    <label>Din cufăr epic <input type="number" id="gEpic" min="0"></label>
+
+    <h2>Prețuri cufere în magazin</h2>
+    <label>Cufăr comun <input type="number" id="cpCommon" min="1"></label>
+    <label>Cufăr rar <input type="number" id="cpRare" min="1"></label>
+    <label>Cufăr epic <input type="number" id="cpEpic" min="1"></label>
+
+    <button id="saveBtn" type="button">Salvează configurația</button>
+    <div id="status"></div>
+
+    
+
+  </div>
+
+  <script>
+    (function () {
+      function report(msg) {
+        var el = document.getElementById('gateMsg');
+        if (el) { el.textContent = '⚠ Eroare de script: ' + msg; el.className = 'err'; }
+      }
+      window.addEventListener('error', function (e) {
+        report(e.message || (e.target && (e.target.src || e.target.href)) || 'necunoscută');
+      }, true);
+      window.addEventListener('unhandledrejection', function (e) {
+        report((e.reason && (e.reason.message || e.reason)) || 'promise rejection');
+      });
+    })();
+  </script>
+  <script type="module" src="js/admin.js"></script>
+</body>
+</html>

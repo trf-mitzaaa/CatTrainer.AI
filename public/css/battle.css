@@ -1,0 +1,525 @@
+.poke-battle {
+    max-width: 920px;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.poke-stage {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+        "eplate  esprite"
+        "psprite pplate";
+    gap: 6px;
+    min-height: 400px;
+    padding: 24px 26px 18px;
+    border-radius: 10px;
+    border: 3px solid #6b5433;
+    overflow: hidden;
+    background:
+        repeating-linear-gradient(0deg,
+            rgba(255,255,255,0.025) 0 2px,
+            transparent 2px 7px),
+        linear-gradient(180deg, #2a1550 0%, #3a1d66 55%, #241143 100%);
+    box-shadow:
+        inset 0 0 70px rgba(0,0,0,0.5),
+        0 14px 34px rgba(0,0,0,0.5);
+}
+
+.poke-slot {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    min-height: 160px;
+}
+.poke-slot--enemy  { grid-area: esprite; }
+.poke-slot--player { grid-area: psprite; }
+
+.poke-ground {
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 236px;
+    height: 62px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 50% 38%,
+        #63a06e 0%,
+        #47825a 45%,
+        #34624a 70%,
+        #274a3a 100%);
+    box-shadow:
+        inset 0 -8px 14px rgba(0,0,0,0.35),
+        inset 0 4px 8px rgba(255,255,255,0.14),
+        0 6px 16px rgba(0,0,0,0.45);
+}
+
+.poke-ground::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background-image:
+        radial-gradient(circle 2px at 22% 40%, rgba(255,255,255,0.18) 0 1px, transparent 2px),
+        radial-gradient(circle 2px at 58% 62%, rgba(255,255,255,0.14) 0 1px, transparent 2px),
+        radial-gradient(circle 2px at 76% 34%, rgba(255,255,255,0.16) 0 1px, transparent 2px),
+        radial-gradient(circle 2px at 40% 70%, rgba(0,0,0,0.22) 0 1px, transparent 2px);
+}
+.poke-slot--enemy .poke-ground { width: 210px; height: 54px; }
+
+.poke-sprite {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 14px;         
+    image-rendering: pixelated;
+    filter: drop-shadow(0 6px 6px rgba(0,0,0,0.45));
+}
+.poke-slot--enemy .poke-sprite {
+    width: 144px;
+    margin-bottom: 10px;
+    animation:
+        pokeEnterRight .5s ease-out both,
+        pokeFloat 3.2s ease-in-out .5s infinite;
+}
+.poke-slot--player .poke-sprite {
+    width: 186px;
+    animation:
+        pokeEnterLeft .5s ease-out both,
+        pokeBreathe 3.6s ease-in-out .5s infinite;
+}
+
+@keyframes pokeEnterRight {
+    from { transform: translateX(70px);  opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+}
+@keyframes pokeEnterLeft {
+    from { transform: translateX(-70px); opacity: 0; }
+    to   { transform: translateX(0);     opacity: 1; }
+}
+@keyframes pokeFloat {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+}
+@keyframes pokeBreathe {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.025); }
+}
+
+.poke-plate {
+    position: relative;
+    z-index: 2;
+    background: linear-gradient(180deg, #fdf6dc 0%, #f2e4ba 100%);
+    border: 3px solid #6b5433;
+    border-radius: 14px 8px 8px 14px;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 18px 100%, 0 calc(100% - 18px));
+    filter: drop-shadow(4px 4px 0 rgba(0,0,0,0.4));
+    padding: 10px 16px 10px 20px;
+    min-width: 260px;
+    max-width: 340px;
+}
+.poke-plate--enemy  { grid-area: eplate; justify-self: start; align-self: start; }
+.poke-plate--player { grid-area: pplate; justify-self: end;   align-self: end; }
+
+.poke-plate-top {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 7px;
+}
+.poke-plate-name {
+    font-family: var(--font-title);
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #3a3226;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.poke-lv {
+    font-family: var(--font-title);
+    font-size: 16px;
+    color: #3a3226;
+    flex-shrink: 0;
+}
+
+.poke-hp-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.poke-hp-tag {
+    font-family: var(--font-title);
+    font-size: 11px;
+    letter-spacing: 1px;
+    color: #f0a83c;
+    background: #3a3226;
+    border-radius: 4px;
+    padding: 2px 6px;
+    flex-shrink: 0;
+}
+.poke-hp-track {
+    flex: 1;
+    height: 12px;
+    background: #58514a;
+    border: 2px solid #3a3226;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.poke-hp-fill {
+    height: 100%;
+    width: 100%;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #6fe37a, #2eb84a);
+    transition: width .5s cubic-bezier(0.4,0,0.2,1), background .3s ease;
+}
+.poke-hp-fill.hp--mid { background: linear-gradient(180deg, #ffcc4d, #e8a000); }
+.poke-hp-fill.hp--low {
+    background: linear-gradient(180deg, #ff6b5e, #d0302a);
+    animation: hpBlink 0.8s steps(2) infinite;
+}
+@keyframes hpBlink { 50% { opacity: 0.6; } }
+
+.poke-hp-text {
+    font-family: var(--font-title);
+    font-size: 15px;
+    color: #4a4236;
+    text-align: right;
+    margin-top: 3px;
+}
+
+.poke-exp-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 4px;
+}
+.poke-exp-tag {
+    font-family: var(--font-title);
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: #6fd8e8;
+    background: #3a3226;
+    border-radius: 3px;
+    padding: 1px 5px;
+    flex-shrink: 0;
+}
+.poke-exp-track {
+    flex: 1;
+    height: 7px;
+    background: #58514a;
+    border: 2px solid #3a3226;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.poke-exp-fill {
+    height: 100%;
+    background: linear-gradient(180deg, #55d7e8, #2a8fd6);
+    transition: width .5s ease;
+}
+
+.poke-items {
+    margin-top: 9px;
+    padding-top: 9px;
+    border-top: 2px dashed rgba(58,50,38,0.35);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.poke-panel {
+    margin-top: 18px;
+    padding: 20px 24px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #2a4a52 0%, #1d363e 100%);
+    border: 3px solid var(--cream);
+    box-shadow:
+        0 0 0 5px #8f2f36,
+        0 0 0 6px rgba(0,0,0,0.5),
+        inset 0 0 0 2px rgba(0,0,0,0.35),
+        0 14px 30px rgba(0,0,0,0.5);
+    min-height: 130px;
+}
+
+.poke-panel .dialogue-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+.poke-portrait {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    image-rendering: pixelated;
+    background: rgba(0,0,0,0.28);
+    border: 2px solid rgba(245,230,200,0.45);
+    border-radius: 8px;
+    padding: 4px;
+    flex-shrink: 0;
+}
+.poke-panel .dialogue-text {
+    font-family: var(--font-body);
+    font-size: 24px;
+    line-height: 1.4;
+    color: #f5efdf;
+    padding-top: 4px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+}
+.poke-panel .dialogue-text::after {
+    content: '▼';
+    display: inline-block;
+    margin-left: 8px;
+    font-size: 13px;
+    color: var(--gold-light);
+    animation: cursorBlink 1s steps(2) infinite;
+}
+@keyframes cursorBlink { 50% { opacity: 0; } }
+
+.poke-panel .question-text {
+    font-family: var(--font-body);
+    font-size: 22px;
+    line-height: 1.4;
+    color: #f5efdf;
+    margin-bottom: 16px;
+    text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+}
+.poke-panel .answers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+.poke-panel .answer-btn {
+    all: unset;
+    box-sizing: border-box;
+    position: relative;
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.3;
+    color: #3a3226;
+    background: linear-gradient(180deg, #fdf6dc, #f2e4ba);
+    border: 3px solid #6b5433;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+    padding: 12px 14px 12px 30px;
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease, background .15s ease;
+}
+.poke-panel .answer-btn::before {
+    content: '▶';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+    color: #b0281e;
+    opacity: 0;
+    transition: opacity .12s ease;
+}
+.poke-panel .answer-btn:hover:not(:disabled) {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.45);
+    background: #fffbe9;
+}
+.poke-panel .answer-btn:hover:not(:disabled)::before { opacity: 1; }
+.poke-panel .answer-btn:disabled { cursor: default; opacity: 0.85; }
+
+.poke-panel .answer-btn.correct {
+    background: linear-gradient(180deg, #7ee787, #3fb950);
+    border-color: #1e5c2a;
+    color: #10331a;
+    opacity: 1;
+}
+.poke-panel .answer-btn.wrong {
+    background: linear-gradient(180deg, #ff8a80, #e05046);
+    border-color: #6e1a14;
+    color: #3d0d09;
+    animation: wrongShake .3s ease;
+    opacity: 1;
+}
+@keyframes wrongShake {
+    0%, 100% { transform: translateX(0); }
+    25%      { transform: translateX(-4px); }
+    75%      { transform: translateX(4px); }
+}
+.poke-panel .answer-btn.eliminated {
+    opacity: 0.3;
+    text-decoration: line-through;
+    filter: grayscale(1);
+}
+
+.poke-panel .battle-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 14px;
+}
+.poke-panel .action-btn {
+    all: unset;
+    box-sizing: border-box;
+    font-family: var(--font-title);
+    font-size: 17px;
+    letter-spacing: 1px;
+    color: #3a3226;
+    background: linear-gradient(180deg, #fdf6dc, #f2e4ba);
+    border: 3px solid #6b5433;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.4);
+    padding: 11px 22px;
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+.poke-panel .action-btn:hover:not(:disabled) {
+    transform: translate(-1px, -1px);
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.45);
+}
+.poke-panel .action-btn.primary {
+    background: linear-gradient(180deg, var(--gold-light), var(--gold));
+    border-color: #5c4200;
+}
+.poke-panel .action-btn:disabled {
+    opacity: 0.55;
+    cursor: wait;
+    transform: none;
+}
+
+.poke-panel .lesson-content { max-height: 340px; overflow-y: auto; }
+.poke-panel #lessonText {
+    font-family: var(--font-body);
+    font-size: 19px;
+    line-height: 1.55;
+    color: #f0ead9;
+}
+
+.poke-back { margin-top: 14px; }
+
+@media (max-width: 680px) {
+    .poke-stage {
+        padding: 14px 10px 10px;
+        min-height: 330px;
+        gap: 4px;
+    }
+    .poke-plate {
+        min-width: 0;
+        max-width: none;
+        padding: 7px 10px 7px 16px;
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    }
+    .poke-plate-name { font-size: 15px; }
+    .poke-lv         { font-size: 13px; }
+    .poke-hp-text    { font-size: 12px; }
+    .poke-slot--enemy  .poke-sprite { width: 100px; }
+    .poke-slot--player .poke-sprite { width: 126px; }
+    .poke-ground                    { width: 150px; height: 40px; }
+    .poke-slot--enemy .poke-ground  { width: 130px; height: 34px; }
+
+    .poke-panel { padding: 14px; }
+    .poke-panel .dialogue-text,
+    .poke-panel .question-text { font-size: 18px; }
+    .poke-panel .answers-grid { grid-template-columns: 1fr; }
+    .poke-portrait { width: 48px; height: 48px; }
+}
+
+.poke-items .pup-btn {
+    all: unset;
+    box-sizing: border-box;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #fffbe9, #f2e4ba);
+    border: 2px solid #6b5433;
+    border-radius: 6px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: transform .12s ease, box-shadow .12s ease;
+}
+.poke-items .pup-icon { font-size: 19px; line-height: 1; }
+.poke-items .pup-btn:hover:not(:disabled) {
+    transform: translate(-1px, -1px);
+    box-shadow: 3px 3px 0 rgba(0,0,0,0.35);
+}
+.poke-items .pup-btn:disabled { cursor: default; opacity: 0.55; }
+.poke-items .pup-used {
+    opacity: 0.3;
+    filter: grayscale(1);
+    box-shadow: none;
+}
+
+.power-up-hint {
+    margin-top: 12px;
+    padding: 10px 14px;
+    font-family: var(--font-body);
+    font-size: 17px;
+    color: #ffe9a8;
+    background: rgba(0,0,0,0.35);
+    border: 2px dashed rgba(240,192,64,0.55);
+    border-radius: 6px;
+}
+
+.persistent-buff-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 2px dashed rgba(245,230,200,0.25);
+}
+.buff-pill {
+    font-family: var(--font-body);
+    font-size: 15px;
+    color: #3a3226;
+    background: linear-gradient(180deg, #fdf6dc, #f2e4ba);
+    border: 2px solid #6b5433;
+    border-radius: 999px;
+    padding: 4px 12px;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+}
+.buff-pill--spent {
+    opacity: 0.45;
+    filter: grayscale(1);
+    text-decoration: line-through;
+}
+
+@media (max-width: 680px) {
+    .poke-items .pup-btn { width: 32px; height: 32px; }
+    .poke-items .pup-icon { font-size: 16px; }
+    .buff-pill { font-size: 13px; padding: 3px 10px; }
+}
+
+.poke-slot--player .poke-sprite--emoji {
+    font-size: 120px;
+    line-height: 1;
+    width: auto;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 6px 6px rgba(0,0,0,0.45));
+}
+
+.poke-slot--player img.poke-sprite[src^="data:"] {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid #6b5433;
+}
+@media (max-width: 680px) {
+    .poke-slot--player .poke-sprite--emoji { font-size: 84px; }
+    .poke-slot--player img.poke-sprite[src^="data:"] { width: 108px; height: 108px; }
+}
+
+.poke-slot--player .poke-sprite--avatar {
+    width: clamp(96px, 26vw, 150px) !important;
+    height: clamp(96px, 26vw, 150px) !important;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 3px solid #6b5433;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
+}
+@media (max-width: 680px) {
+    .poke-slot--player .poke-sprite--avatar {
+        width: clamp(84px, 24vw, 110px) !important;
+        height: clamp(84px, 24vw, 110px) !important;
+    }
+}
