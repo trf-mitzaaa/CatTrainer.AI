@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="main/public/assets/GitHubIcon.png" width="480"/>
+<img src="GitHubIcon.png" width="480"/>
 
 **Un joc RPG educațional în care înveți luptând — întrebările sunt generate de AI, la orice materie, pentru orice clasă.**
 
