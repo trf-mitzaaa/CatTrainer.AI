@@ -9,7 +9,6 @@
 ![JavaScript](https://img.shields.io/badge/Vanilla_JS-ES_Modules-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![Firebase](https://img.shields.io/badge/Firebase-Auth_+_Firestore-FFCA28?style=for-the-badge&logo=firebase&logoColor=black)
 ![Claude](https://img.shields.io/badge/Claude_API-Haiku_4.5-D97757?style=for-the-badge&logo=anthropic&logoColor=white)
-![Serverless](https://img.shields.io/badge/Arhitectură-Serverless-7B2D8B?style=for-the-badge)
 ![Languages](https://img.shields.io/badge/Limbi-RO_·_EN_·_FR_·_DE_·_ES-2D8C82?style=for-the-badge)
 
 <br/>
